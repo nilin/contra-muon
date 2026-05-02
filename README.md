@@ -1,16 +1,12 @@
 # Contra Muon
 
-Contra Muon is a small modification of Muon: after forming Muon's Newton-Schulz
-orthogonalized momentum update, subtract a fraction of the operator-normalized
-momentum gradient:
+Contra Muon is a small modification of Muon: after forming Muon's Newton-Schulz orthogonalized momentum update, subtract a fraction of the operator-normalized momentum gradient:
 
 ```python
 update = muon_update - contra_muon / 2 * operator_normalized_momentum_gradient
 ```
 
-In the initial NanoGPT Track 3
-experiments, `contra_muon = 0.4`, so the subtracted component is `0.2` times the
-operator-normalized momentum gradient.
+where `0 < CONTRA_MUON <= 1`. In the initial NanoGPT Track 3 experiments, `contra_muon = 0.4`, so the subtracted component is `0.2` times the operator-normalized momentum gradient.
 
 ## Reasoning
 
@@ -20,20 +16,15 @@ Let
 G = sum_i s_i u_i v_i^T
 ```
 
-be the SVD of the gradient, estimated in practice by the momentum buffer. Suppose
-the update is
+be the SVD of the gradient, estimated in practice by the momentum buffer. Suppose the update is
 
 ```text
 U = sum_i a_i m_i,    where m_i = u_i v_i^T.
 ```
 
-Then the `a_i m_i` component contributes approximately `a_i s_i` to the first-order
-loss change. In momentum SGD, larger singular directions therefore contribute
-quadratically more to the loss change. In Muon, larger singular directions still
-contribute more, but only linearly.
+Then the `a_i m_i` component contributes approximately `a_i s_i` to the first-order loss change. In momentum SGD, larger singular directions therefore contribute quadratically more to the loss change. In Muon, larger singular directions still contribute more, but only linearly.
 
-Contra Muon with coefficient `1` makes the largest singular directions contribute
-approximately the same amount to the loss change, to first order. If
+Contra Muon with coefficient `1` makes the largest singular directions contribute approximately the same amount to the loss change, to first order. If
 
 ```text
 r_i = s_i / s_1,
