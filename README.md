@@ -36,7 +36,7 @@ Contra Muon with coefficient `1` makes the largest singular directions contribut
 approximately the same amount to the loss change, to first order. If
 
 ```text
-r_i = s_i / s_max,
+r_i = s_i / s_1,
 ```
 
 then Contra Muon uses
