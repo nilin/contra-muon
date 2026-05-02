@@ -1,4 +1,4 @@
-# Contra Muon
+# Contra-Muon
 
 Contra Muon is a small modification of Muon: after forming Muon's Newton-Schulz orthogonalized momentum update, subtract a fraction of the operator-normalized momentum gradient:
 
