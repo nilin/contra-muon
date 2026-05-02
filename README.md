@@ -14,6 +14,42 @@ operator-normalized momentum gradient.
 
 ## Reasoning
 
+Let
+
+```text
+G = sum_i s_i u_i v_i^T
 ```
-Let sum_i s_i u_i v_i' be the SVD of the gradient (estimated by the momentum vector). suppose the update is sum_i a_i m_i where m_i=u_i v_i' are the singular modes. then c_i m_i contributes ~ a_i s_i to the loss delta. So in (momentum) SGD, larger singular directions contribute quadratically more to the loss delta. But even in Muon, larger singular directions constribute more, but only linearly. Contra-Muon with coefficient 1 makes the large singular directions contribute the same amount to the loss delta, to first order. This is because a_i=1-r_i/2 where r_i=1 is the i'th singular value relative to the largest. So the contribution is proportional to f(r_i) = r_i*(1-r_i/2) = r_i - r_i^2/2 which has f'(1)=1, i.e. it is approximately constant near the top singular value where r_i~1.
+
+be the SVD of the gradient, estimated in practice by the momentum buffer. Suppose
+the update is
+
+```text
+U = sum_i a_i m_i,    where m_i = u_i v_i^T.
 ```
+
+Then the `a_i m_i` component contributes approximately `a_i s_i` to the first-order
+loss change. In momentum SGD, larger singular directions therefore contribute
+quadratically more to the loss change. In Muon, larger singular directions still
+contribute more, but only linearly.
+
+Contra Muon with coefficient `1` makes the largest singular directions contribute
+approximately the same amount to the loss change, to first order. If
+
+```text
+r_i = s_i / s_max,
+```
+
+then Contra Muon uses
+
+```text
+a_i = 1 - r_i / 2.
+```
+
+The contribution is therefore proportional to
+
+```text
+f(r_i) = r_i * (1 - r_i / 2) = r_i - r_i^2 / 2.
+```
+
+Since `f'(1) = 0`, this contribution is approximately flat near the top singular
+value, where `r_i ~= 1`.
