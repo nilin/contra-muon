@@ -248,9 +248,7 @@ def plot_cumulative_power_fits(output: Path, *, logx: bool) -> None:
 def main() -> None:
     FIGURES.mkdir(parents=True, exist_ok=True)
     plot_maps(FIGURES / "power_muon_maps.png", logx=False)
-    plot_maps(FIGURES / "power_muon_maps_logx.png", logx=True)
     plot_readme_figure(FIGURES / "power_muon_readme_figure.png")
-    plot_cumulative_power_fits(FIGURES / "power_muon_cumulative_fits.png", logx=True)
     plot_cumulative_power_fits(FIGURES / "power_muon_cumulative_fits_linear.png", logx=False)
 
 

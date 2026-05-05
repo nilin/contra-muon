@@ -58,8 +58,6 @@ approximation is reached.
 
 ![Cumulative Power-Muon fits on a linear x-axis](figures/power_muon_cumulative_fits_linear.png)
 
-![Cumulative Power-Muon fits on a log x-axis](figures/power_muon_cumulative_fits.png)
-
 ## Reasoning for Boosting Small Singular Values Beyond Muon
 
 Let
