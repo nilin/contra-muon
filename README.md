@@ -3,7 +3,12 @@
 Nilin
 
 
-Contra-Muon and Power-Muon are exaggerations of Muon: Muon modifies the momentum gradient by making all singular values close to 1, thereby boosting the small singular modes.
+Contra-Muon and Power-Muon are exaggerations of Muon: 
+
+
+## Background
+
+[Muon](https://kellerjordan.github.io/posts/muon/) modifies the momentum gradient by making all singular values close to 1, thereby boosting the small singular modes.
 
 
 ## Contra-Muon
