@@ -27,7 +27,7 @@ the top singular modes or growing the small ones. Contra-Muon mainly addresses
 the relative contributions among the top singular modes, whereas Power-Muon with
 `p < 0` boosts the many tiny singular modes.
 
-![Linear-scale singular-value maps](figures/power_muon_maps.png)
+![Linear-scale singular-value maps](../figures/power_muon_maps.png)
 
 ## Contra-Muon
 
@@ -58,7 +58,7 @@ show the cumulative linear combination for `p=-0.2` and `p=0.2`, starting from
 the highest-order iterate and adding lower-order iterates until the final
 approximation is reached.
 
-![Cumulative Power-Muon fits on a linear x-axis](figures/power_muon_cumulative_fits_linear.png)
+![Cumulative Power-Muon fits on a linear x-axis](../figures/power_muon_cumulative_fits_linear.png)
 
 ## Reasoning for Boosting Small Singular Values Beyond Muon
 
@@ -80,7 +80,7 @@ first-order loss change. In momentum SGD, larger singular directions therefore
 contribute quadratically more to the loss change. In Muon, larger singular
 directions still contribute more, but only linearly.
 
-![Muon, Contra-Muon, and Power-Muon singular-value maps](figures/power_muon_readme_figure.png)
+![Muon, Contra-Muon, and Power-Muon singular-value maps](../figures/power_muon_readme_figure.png)
 
 Contra-Muon with coefficient `1` makes the largest singular directions
 contribute approximately the same amount to the loss change, to first order. If
