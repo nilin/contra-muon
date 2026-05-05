@@ -3,7 +3,7 @@
 Nilin
 
 
-Contra-Muon and Power-Muon are exaggerations of Muon: 
+Contra-Muon and Power-Muon (p<0) are exaggerations of Muon which further boost small singular values or damped large singular values of the gradient.
 
 
 ## Background
