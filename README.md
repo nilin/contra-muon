@@ -54,4 +54,4 @@ Since `f'(1) = 0`, this contribution is approximately flat near the top singular
 value, where `r_i ~= 1`.
 
 ## Results
-Improves the previous record in modded-nanogpt track 3 by 25 steps: https://github.com/KellerJordan/modded-nanogpt/pull/275
+As a proof of concept I used Contra-Muon in modded-nanogpt track 3: https://github.com/KellerJordan/modded-nanogpt/pull/275, producing a record run.
