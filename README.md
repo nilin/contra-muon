@@ -7,12 +7,12 @@ Contra-Muon is an exaggeration of Muon which further boost small singular values
 
 ## Background
 
-[Muon](https://kellerjordan.github.io/posts/muon/) modifies the momentum gradient of matrix-shaped weights by making all singular values close to 1, thereby boosting the small singular modes. Muon is not only a definition in terms of linear algebra, but also an algorithm which calculcates the update efficiently using Newton-Schultz iteration.
+[Muon](https://kellerjordan.github.io/posts/muon/) modifies the momentum gradient of matrix-shaped weights by making all singular values close to 1, thereby boosting the small singular modes. More specifically, Muon refers to the algorithm which calculates this update efficiently using Newton-Schultz iteration.
 
 
 ## Boosting the ~~small~~ intermediate[^1] modes further
 
-This note considers the possibility of making Muon even more Muon-like, damping the top singular modes or growing the ~~small~~ intermediate ones. Contra-Muon mainly addresses the relative constributions among the top singular modes. whereas Soft-Muon with `p=0.1` softly damps smaller singular modes relative to standard Muon.
+This note considers the possibility of making Muon even more Muon-like, damping the top singular modes or growing the ~~small~~ intermediate ones. Contra-Muon mainly addresses the relative constributions among the top singular modes. whereas Soft-Muon with damps smaller singular modes relative to standard Muon.
 
 ![Log-x singular-value maps](figures/soft_muon_contra125_maps_logx.png)
 
@@ -85,4 +85,4 @@ value, where `r_i ~= 1`.
 As a proof of concept I used Contra-Muon in modded-nanogpt track 3: https://github.com/KellerJordan/modded-nanogpt/pull/275, producing a record run. I later used a contra-muon to soft-muon schedule to get to the 3030-step record.
 
 [^1]: fixed wording from small to intermediate based on feedback from You Jiacheng
-[^2]: [HTMuon](https://arxiv.org/abs/2603.10067) means a power function transformation 0<p<1 of singular values. Soft-muon linear combinations can be used to approximate HTMuon. The [HTMuon paper](https://arxiv.org/abs/2603.10067) exhibits an alternative approximation using iterated approximate matrix square roots.
+[^2]: [HTMuon](https://arxiv.org/abs/2603.10067) means a power function transformation 0<p<1 of singular values. Soft-muon linear combinations can be used to approximate HTMuon. The [HTMuon paper](https://arxiv.org/abs/2603.10067) exhibits an alternative approximation, HTMuon\_NS, which uses iterated approximate matrix square roots.
