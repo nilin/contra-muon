@@ -2,6 +2,7 @@
 
 Nilin
 
+first version 2026/5/4, edited 2026/5/14[^1]
 
 Contra-Muon is an exaggeration of Muon which further boost small singular values or apply damping to large singular values of the gradient. The goal is to compensate for the smaller leverage of small singular directions to boost diversity in training. Soft-Muon stacks Muon's Newton-Schultz iterates to instead underweigh the small singular values compared to Muon, a middle ground between SGD and Muon.
 
@@ -10,7 +11,7 @@ Contra-Muon is an exaggeration of Muon which further boost small singular values
 [Muon](https://kellerjordan.github.io/posts/muon/) modifies the momentum gradient of matrix-shaped weights by making all singular values close to 1, thereby boosting the small singular modes. More specifically, Muon refers to the algorithm which calculates this update efficiently using Newton-Schultz iteration.
 
 
-## Boosting the ~~small~~ intermediate[^1] modes further
+## Boosting the ~~small~~ intermediate[^2] modes further
 
 This note considers the possibility of making Muon even more Muon-like, damping the top singular modes or growing the ~~small~~ intermediate ones. Contra-Muon mainly addresses the relative constributions among the top singular modes. whereas Soft-Muon with damps smaller singular modes relative to standard Muon.
 
@@ -34,7 +35,7 @@ where `0 < contra_muon_coeff <= 1`.
 
 The Newton-Schultz iterates in Muon produce approximations to `f(g)` where `g` is the matrix-shaped gradient, `f(g)` is shorthand for `Uf(D)V` where `UDV` is the SVD of `g`. Here `f` is a function `f(0)=0`, `f((eps,1])=1` where `eps` gets smaller with each iteration. While Muon normally uses the last iterate as an approximation to UV, we can also take linear combinations of the previous iterates to compute other functions of `g`. Contra-Muon can be considerd a special case where we use the 0'th and last iterate. 
 
-When we take a convex combination on NS iterates we will call it **Soft-Muon**. The plots below show cumulative linear combinations used to approximate functions, starting from the highest-order iterate. On the right is an example of soft-muon used to approximate power function of the singular values. Power function transformations of the singular values with p<1 are called [HTMuon](https://arxiv.org/abs/2603.10067)[^2].
+When we take a convex combination on NS iterates we will call it **Soft-Muon**. The plots below show cumulative linear combinations used to approximate functions, starting from the highest-order iterate. On the right is an example of soft-muon used to approximate power function of the singular values. Power function transformations of the singular values with p<1 are called [HTMuon](https://arxiv.org/abs/2603.10067)[^3].
 
 
 ![Cumulative Soft-Muon fits on a linear x-axis](figures/power_muon_cumulative_fits_linear.png)
@@ -84,5 +85,6 @@ value, where `r_i ~= 1`.
 ## Results
 As a proof of concept I used Contra-Muon in modded-nanogpt track 3: https://github.com/KellerJordan/modded-nanogpt/pull/275, producing a record run. I later used a contra-muon to soft-muon schedule to get to the 3030-step record.
 
-[^1]: fixed wording from small to intermediate based on feedback from You Jiacheng
-[^2]: [HTMuon](https://arxiv.org/abs/2603.10067) means a power function transformation 0<p<1 of singular values. Soft-muon linear combinations can be used to approximate HTMuon. The [HTMuon paper](https://arxiv.org/abs/2603.10067) exhibits an alternative approximation, HTMuon\_NS, which uses iterated approximate matrix square roots.
+[^1]: Added citation to HTMuon, thanks Tianyu Pang for the reference
+[^2]: fixed wording from small to intermediate based on feedback from You Jiacheng
+[^3]: [HTMuon](https://arxiv.org/abs/2603.10067) means a power function transformation 0<p<1 of singular values. Soft-muon linear combinations can be used to approximate HTMuon. The [HTMuon paper](https://arxiv.org/abs/2603.10067) exhibits an alternative approximation, HTMuon\_NS, which uses iterated approximate matrix square roots.
